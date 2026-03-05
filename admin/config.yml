@@ -1,0 +1,115 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: ru
+
+collections:
+  - name: "content"
+    label: "Контент сайта"
+    files:
+      - name: "main"
+        label: "Все тексты и фото"
+        file: "content.json"
+        format: json
+        fields:
+
+          - name: site
+            label: "⚙️ Общие настройки"
+            widget: object
+            fields:
+              - {name: title, label: "Заголовок вкладки браузера", widget: string}
+              - {name: description, label: "Описание для поисковиков (SEO)", widget: text}
+              - {name: telegram, label: "Ссылка Telegram (полная)", widget: string, hint: "Например: https://t.me/timetolove_ru"}
+
+          - name: hero
+            label: "🌿 Главный экран"
+            widget: object
+            fields:
+              - {name: eyebrow, label: "Маленькая подпись над заголовком", widget: string}
+              - {name: heading_line1, label: "Заголовок — строка 1", widget: string}
+              - {name: heading_line2, label: "Заголовок — строка 2", widget: string}
+              - {name: heading_italic, label: "Заголовок — курсивное слово", widget: string}
+              - {name: subtext, label: "Текст под заголовком", widget: text}
+              - {name: button_text, label: "Текст кнопки", widget: string}
+              - {name: image, label: "Главное фото (вертикальное 3:4)", widget: image, required: false}
+
+          - name: about
+            label: "👩 О мастере"
+            widget: object
+            fields:
+              - {name: eyebrow, label: "Маленькая подпись", widget: string}
+              - {name: heading, label: "Заголовок", widget: string}
+              - {name: paragraph1, label: "Абзац 1", widget: text}
+              - {name: paragraph2, label: "Абзац 2", widget: text}
+              - {name: stat1_num, label: "Статистика 1 — значение", widget: string}
+              - {name: stat1_label, label: "Статистика 1 — подпись", widget: string}
+              - {name: stat2_num, label: "Статистика 2 — значение", widget: string}
+              - {name: stat2_label, label: "Статистика 2 — подпись", widget: string}
+              - {name: image, label: "Фото мастера (вертикальное)", widget: image, required: false}
+
+          - name: products
+            label: "🕯️ Свечи (4 карточки)"
+            widget: list
+            min: 4
+            max: 4
+            label_singular: "Свеча"
+            fields:
+              - {name: tag, label: "Тип / категория", widget: string}
+              - {name: name, label: "Название", widget: string}
+              - {name: description, label: "Описание", widget: text}
+              - {name: price, label: "Цена", widget: string}
+              - {name: image, label: "Фото свечи", widget: image, required: false}
+
+          - name: gallery
+            label: "📸 Галерея покупателей"
+            widget: object
+            fields:
+              - {name: eyebrow, label: "Маленькая подпись", widget: string}
+              - {name: heading, label: "Заголовок секции", widget: string}
+              - {name: subtext, label: "Подзаголовок", widget: string}
+              - name: photos
+                label: "Фотографии карусели"
+                widget: list
+                label_singular: "Фото"
+                hint: "Добавляйте и удаляйте фото — карусель обновится автоматически"
+                fields:
+                  - {name: image, label: "Фото", widget: image}
+                  - {name: caption, label: "Подпись под фото (необязательно)", widget: string, required: false}
+
+          - name: packaging
+            label: "🎁 Упаковка"
+            widget: object
+            fields:
+              - {name: eyebrow, label: "Маленькая подпись", widget: string}
+              - {name: heading, label: "Заголовок", widget: string}
+              - {name: text, label: "Текст", widget: text}
+              - {name: image, label: "Фото упаковки", widget: image, required: false}
+
+          - name: masterclasses
+            label: "🎨 Мастер-классы"
+            widget: object
+            fields:
+              - {name: eyebrow, label: "Маленькая подпись", widget: string}
+              - {name: intro, label: "Вводный текст", widget: text}
+              - name: items
+                label: "Ближайшие мастер-классы"
+                widget: list
+                label_singular: "Мастер-класс"
+                hint: "⚠️ Если список пуст — секция автоматически скрывается на сайте"
+                fields:
+                  - {name: date, label: "Дата и время", widget: string, hint: "Например: 15 апреля, 14:00"}
+                  - {name: title, label: "Название / тема", widget: string}
+                  - {name: description, label: "Описание", widget: text}
+                  - {name: price, label: "Стоимость", widget: string}
+                  - {name: spots, label: "Количество мест", widget: string, hint: "Например: осталось 4 места"}
+                  - {name: image, label: "Фото (необязательно)", widget: image, required: false}
+
+          - name: footer
+            label: "📄 Подвал сайта"
+            widget: object
+            fields:
+              - {name: copyright, label: "Текст копирайта", widget: string}
